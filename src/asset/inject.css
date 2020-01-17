@@ -2,7 +2,6 @@
   background-color: rgba(0, 0, 0, 0);
   color:rgba(0,0,0,0);
   z-index: 999999999999;
-  position:fixed;
 }
 .screenToolsControlWMSS:after {
   content:"Select";
