@@ -1,5 +1,4 @@
 {
-
   "background": {
     "scripts": ["background.js"],
     "persistent": false
@@ -12,7 +11,7 @@
   "manifest_version": 2,
   "name": "AppNexus Creative Insertion Tool (AST Tag)",
   "permissions": ["activeTab"],
-  "version": "2.0",
+  "version": "3.1",
   "icons": {
     "128": "icon128.png",
     "96": "icon96.png"

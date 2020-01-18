@@ -1,36 +1,22 @@
 const
+  name = require('./package.json').name,
   path = require('path'),
-  CopyPlugin = require('copy-webpack-plugin');
+  CopyPlugin = require('copy-webpack-plugin'),
+  ZipPlugin = require('zip-webpack-plugin');
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist',"raw"),
     filename: 'inject.js'
   },
-  // module: {
-  //   rules: [
-  //     { test: /\.js$/, use: 'raw-loader' }
-  //   ]
-  // }  ,
   plugins: [
     new CopyPlugin([{
       from: 'asset',
       to: '.'
     }]),
+    new ZipPlugin({
+      path:"../zip",
+      filename: `${name}.zip`
+    })
   ]
-  //,
-  // module: {
-  //   rules: [{
-  //     test: /\.(png|json|js)$/i,
-  //     use: [{
-  //       loader: "file-loader?name=[name].[ext]!extract-loader!html-loader",
-  //       options: {
-  //         //publicPath: path.resolve(__dirname, 'asset'),
-  //         //outputPath: path.resolve(__dirname, 'dist'),
-  //         //name:"dest/[name][ext]"
-  //         include: path.resolve(__dirname, 'asset')
-  //       }
-  //     }]
-  //   }]
-  // }
 };
