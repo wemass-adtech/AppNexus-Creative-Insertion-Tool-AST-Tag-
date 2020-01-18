@@ -1,10 +1,12 @@
 {
   "devDependencies": {
+    "compression-webpack-plugin": "^3.1.0",
     "copy-webpack-plugin": "^5.1.1",
     "file-loader": "^5.0.2",
     "raw-loader": "^4.0.0",
     "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "zip-webpack-plugin": "^3.0.0"
   },
   "scripts": {
     "test": "webpack --watch --progress --mode=development",
@@ -12,7 +14,7 @@
     "btest": "webpack --mode=production --watch --progress"
   },
   "name": "appnexus-creative-insertion-tool-ast-tag",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "This extension enables dynamic insertion Ads within a webpage using AST API.",
   "main": "index.js",
   "repository": "git@bitbucket.org:ws_public_team/appnexus-creative-insertion-tool-ast-tag.git",
