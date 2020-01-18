@@ -1,5 +1,10 @@
-let insertCreative = (creativeId, width, height, targetAtt) => {
-  let content = `<!DOCTYPE html>
+import {
+  createElement
+} from "../createElement/createElement";
+
+let insertCreative = (creativeId, targetAtt, width, height) => {
+  let
+    content = `<!DOCTYPE html>
 <html>
 <head>
 <script type="text/javascript">
@@ -19,7 +24,7 @@ let insertCreative = (creativeId, width, height, targetAtt) => {
             height=false
           }=adLoaded.banner;
           if(width && height){
-            let parentElem=window.parent.document.getElementById("${iframeId}");
+            let parentElem=window.parent.document.getElementById("${targetAtt}");
             parentElem.style.width=\`\${width}px\`;
             parentElem.style.height=\`\${height}px\`;
             parentElem.setAttribute("height",height);
@@ -44,38 +49,34 @@ let insertCreative = (creativeId, width, height, targetAtt) => {
   </script>
 </div>
 </body>
-</html>`;
-  var targetElement = querySelector(`[wmstarget='${targetAtt}']`),
-    i;
-  var destinyIframe;
-
+</html>`,
+    targetElement = document.querySelector(`[wmstarget='${targetAtt}']`),
+    destinyIframe;
   if (targetElement.tagName != "DIV") {
-    if (targetElement.tagName == "IFRAME") {
-      destinyIframe = targetElement;
-    } else {
-      var adframe = createElement("iframe", {
-        height,
-        width,
-        frameBorder: 0,
-        scrolling: "no"
-      });
-      targetElement.parentNode.insertBefore(adframe, targetElement.nextSibling);
-      targetElement.parentNode.removeChild(targetElement);
-      destinyIframe = adframe;
-      // alert(targetElement.tagName);
-    }
-  } else {
-    targetElement.innerHTML = `<iframe id='${iframeId}' framespacing='0' frameborder='no' scrolling='no' width='100%' height='100%'></iframe>`;
-    destinyIframe = document.getElementById(iframeId);
-  }
-
-  if (destinyIframe) {
-    createElement(destinyIframe,{
-      id:targetAtt
+    var adframe = createElement("iframe", {
+      height,
+      width,
+      frameBorder: 0,
+      scrolling: "no",
+      id: targetAtt,
+      src: "about:blank"
     });
+    targetElement.parentNode.insertBefore(adframe, targetElement.nextSibling);
+    targetElement.parentNode.removeChild(targetElement);
+    destinyIframe = adframe;
+    // alert(targetElement.tagName);
+
+  } else {
+    targetElement.innerHTML = `<iframe id='${targetAtt}' src="about:blank" framespacing='0' frameborder='no' scrolling='no' width='100%' height='100%'></iframe>`;
+    destinyIframe = document.getElementById(targetAtt);
+  }
+  if (destinyIframe) {
     var iframeContent = (destinyIframe.contentWindow) ? destinyIframe.contentWindow : (destinyIframe.contentDocument.document) ? destinyIframe.contentDocument.document : destinyIframe.contentDocument;
     iframeContent.document.open();
     iframeContent.document.write(content);
     iframeContent.document.close();
   }
-}
+};
+export {
+  insertCreative
+};

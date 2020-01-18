@@ -1,6 +1,5 @@
 function injectScreentool() {
   //chrome.runtime.id
-  console.log("chrome executed");
   chrome.tabs.insertCSS(null, 
     {
       allFrames:false,

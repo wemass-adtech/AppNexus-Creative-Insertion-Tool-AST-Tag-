@@ -7,7 +7,11 @@ import {
 import {
   getOffset
 } from "../getOffset/getOffset";
+import {
+  insertCreative
+} from "../insertCreative/insertCreative";
 let addControl = (ev) => {
+  ev.stopPropagation();
   let origEl = ev.target || ev.srcElement,
     target = origEl,
     theTimeIsNow = Date.now();
@@ -30,17 +34,17 @@ let addControl = (ev) => {
       height = parseInt(target.height);
       width = parseInt(target.width);
     }
-    console.log(width + " " + height);
     if (document.documentElement.scrollTop == 0) {
       ypos = y - 0 - document.body.scrollTop
     } else {
       ypos = y - 0 - document.documentElement.scrollTop;
     }
     let scontrols = createElement("div", {
-      Ct: `${height}px;${width}px;top:${ypos}px;left:${xpos}px`,
+      Ct: `height:${height}px;width:${width}px;top:${ypos}px;left:${xpos}px;position:fixed;`,
       Cn: "screenToolsControlWMSS",
       id: "screenToolsControlWMSS",
-      "wmstarget": `tgtAd${theTimeIsNow}`
+      "wmstarget": `tgtAd${theTimeIsNow}`,
+      "imapicker":"1"
     });
     document.body.appendChild(scontrols);
     setEvent(scontrols, "click", function (ev) {
@@ -48,8 +52,8 @@ let addControl = (ev) => {
         height,
         width,
         cid = prompt("please enter a creative ID"),
-        target = (ev.target || ev.srcElement).getAttribute("wmstarget"),
-      ;
+        target = (ev.target || ev.srcElement),
+        targetId = target.getAttribute("wmstarget");
       if (target.height == null) {
         height = parseInt(target.style.height);
         width = parseInt(target.style.width);
@@ -58,7 +62,7 @@ let addControl = (ev) => {
         width = target.width;
       }
       if (cid != null && cid != "") {
-        insertCreative(cid, target, width, height);
+        insertCreative(cid, targetId, width, height);
       }
       //target.className = old_class;
     });

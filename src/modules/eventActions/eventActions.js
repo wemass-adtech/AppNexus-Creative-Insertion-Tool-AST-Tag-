@@ -1,4 +1,4 @@
-let setEvent = (elemento, eventType, method, noListen = false) => {
+let setEvent = (elemento, eventType, method, noListen = true) => {
     /*funcion que setea eventListeners en un elemento
      *a elemento al que se va a poner el evento
      *b tipo de evento
@@ -10,14 +10,14 @@ let setEvent = (elemento, eventType, method, noListen = false) => {
     if (elemento.addEventListener) {
       elemento.addEventListener(
         eventType,
-        (noListen !== false ? function (event) {
+        (noListen ? function (event) {
           method(event, z);
         } : method),
         false
       );
     } else if (elemento.attachEvent) {
       elemento[`e${eventType}${method}`] = method;
-      elemento[`${eventType}${method}`] = (noListen !== false ? function () {
+      elemento[`${eventType}${method}`] = (noListen ? function () {
         elemento[`e${eventType}${method}`](window.event, z);
       } : elemento[`e${eventType}${method}`]);
       elemento.attachEvent(`on${eventType}`, elemento[`${eventType}${method}`]);
@@ -37,4 +37,7 @@ let setEvent = (elemento, eventType, method, noListen = false) => {
       elemento.detachEvent(`on${eventType}`, elemento[`${eventType}${method}`]);
     }
   };
-export {setEvent,unsetEvent};
+export {
+  setEvent,
+  unsetEvent
+};
