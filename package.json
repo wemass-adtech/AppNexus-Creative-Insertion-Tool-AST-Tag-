@@ -13,7 +13,7 @@
     "btest": "webpack --progress --config webpack-configs/buildTest.config.js"
   },
   "name": "appnexus-creative-insertion-tool-ast-tag",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "This extension enables dynamic insertion Ads within a webpage using AST API.",
   "main": "index.js",
   "repository": "git@bitbucket.org:ws_public_team/appnexus-creative-insertion-tool-ast-tag.git",
