@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
     "compression-webpack-plugin": "^3.1.0",
     "copy-webpack-plugin": "^5.1.1",
     "file-loader": "^5.0.2",
@@ -9,9 +10,9 @@
     "zip-webpack-plugin": "^3.0.0"
   },
   "scripts": {
-    "test": "webpack --watch --progress --mode=development",
-    "build": "webpack --mode=production",
-    "btest": "webpack --mode=production --watch --progress"
+    "test": "webpack --progress --config webpack-configs/rawTest.config.js",
+    "build": "webpack --config webpack-configs/build.config.js",
+    "btest": "webpack --progress --config webpack-configs/buildTest.config.js"
   },
   "name": "appnexus-creative-insertion-tool-ast-tag",
   "version": "3.1.0",

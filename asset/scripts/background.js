@@ -1,13 +1,14 @@
 function injectScreentool() {
   //chrome.runtime.id
+  console.log("wemas"+location.href)
   chrome.tabs.insertCSS(null, 
     {
       allFrames:false,
-      file:"inject.css"
+      file:"styles/inject.css"
     });
     chrome.tabs.executeScript(null, {
         allFrames: false,
-        file: "inject.js"
+        file: "scripts/inject.js"
     });
 }
 
