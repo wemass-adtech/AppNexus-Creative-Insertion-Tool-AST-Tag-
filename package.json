@@ -16,7 +16,7 @@
   "version": "3.2.3",
   "description": "This extension enables dynamic insertion Ads within a webpage using AST API.",
   "main": "index.js",
-  "repository": "git@bitbucket.org:ws_public_team/appnexus-creative-insertion-tool-ast-tag.git",
+  "repository": "git@github.com:dbl-wemass/AppNexus-Creative-Insertion-Tool-AST-Tag-.git",
   "author": "dberrocal@wemass <david.berrocal@wemass.com>",
   "license": "MIT"
 }
